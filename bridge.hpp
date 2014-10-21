@@ -15,7 +15,6 @@
 #   include <boost/function.hpp>   // 
 #   include <boost/thread.hpp>     // and boost::thread
 #   include <boost/cstdint.hpp>
-#   include <boost/regex.hpp>
 #   include <boost/type_traits.hpp>
 #   include <boost/bind.hpp>
 #   include <boost/bind/placeholders.hpp>
@@ -31,7 +30,6 @@ namespace std {
 #   include <mutex>            // and std::mutex
 #   include <thread>           // and std::thread
 #   include <cstdint>
-#   include <regex>
 #endif
 
 #if BRIDGE_VERSION >= 2011
