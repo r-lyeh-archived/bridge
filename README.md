@@ -156,7 +156,5 @@ int main() {
 - `$cpp11(...)`
 
 ```c++
-$cpp03( const void* nil = 0 );
-$cpp11( auto nil = nullptr );
-// or $cpp03( const void* ) $cpp11( auto ) nil = $cpp03( 0 ) $cpp11( nullptr );
+$cpp11(std::unique_ptr) $cpp03(std::auto_ptr)<std::string> str( new std::string("hi") );
 ```
