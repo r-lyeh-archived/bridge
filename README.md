@@ -156,5 +156,5 @@ int main() {
 - `$cpp11(...)`
 
 ```c++
-$cpp11(std::unique_ptr) $cpp03(std::auto_ptr)<std::string> str( new std::string("hi") );
+$cpp11(std::unique_ptr) $cpp03(std::auto_ptr) <std::string> str( new std::string("hi") );
 ```
