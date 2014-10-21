@@ -15,7 +15,7 @@ bridge
 - additionally 128-bit headers are included if possible.
 - bridge recreates a safe std:: playground that wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
 
-```
+```c++
 {
   std::thread( classA() ).detach();
   
@@ -36,7 +36,7 @@ bridge
 ### Thread local storage  
 - `$tls(x)`
 
-```
+```c++
 static $tls(bool) acquired = false;
 ```
 
