@@ -1,10 +1,11 @@
 bridge
 ======
 
-- Bridge is a standard C++11 <--> C++03/boost compatibility layer, plus a few macro utils.
+- Bridge provides a C++11 subset playground even if no C++11 is present.
+- Bridge provides a few macro utils, aimed to cross-development.
+- Bridge pollutes macros on purpose. Sorry but I think this is convenient.
 - Bridge is cross-platform. 
 - Bridge is header-only.
-- Bridge pollutes a few macros on purpose. Sorry but I think this is convenient.
 - Bridge is BOOST licensed.
 
 ## std:: library wrapper
@@ -12,8 +13,7 @@ bridge
 - on C++11 platforms, bridge includes a few c++11 headers only.
 - on C++03 platforms, bridge fallbacks to a few boost libraries. 
 - additionally 128-bit headers are included if possible.
-
-- playground wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
+- bridge recreates a safe std:: playground that wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
 
 ```
 {
@@ -37,7 +37,7 @@ bridge
 - `$tls(x)`
 
 ```
-  static $tls(bool) acquired = false;
+static $tls(bool) acquired = false;
 ```
 
 ### Platform macros
@@ -151,7 +151,7 @@ int main() {
 }
 ```
 
-### C++11/03 macros
+### C++03/11 macros
 - `$cpp03(...)`
 - `$cpp11(...)`
 
