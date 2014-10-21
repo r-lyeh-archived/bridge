@@ -7,14 +7,23 @@ bridge
 - Bridge pollutes a few macros on purpose. Sorry but I think this is convenient.
 - Bridge is BOOST licensed.
 
-### std::
+### std:: library
 
-Safe wrap around all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types. Also, includes 128-bit headers if possible.
-
-### std::placeholders
+- if C++11, bridge includes a few c++11 headers.
+- if C++03, bridge fallbacks to boost libraries. 
+- additionally include 128-bit headers if possible.
+- after #including bridge, a safe `std::` playground is avalailable.
+- playground wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
 
 ```
 {
+  std::thread( classA() ).detach();
+  
+  std::mutex m;
+  std::scope_lock guard(m);
+  
+  std::function<int(int,const char**)> fn( main );
+
   using namespace std::placeholders;
   return std::bind( fn, _1 );
 }
