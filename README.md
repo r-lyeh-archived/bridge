@@ -35,9 +35,9 @@ Safe wrap around all `std::mutex` variants, `std::thread`, `std::function`, `std
 
 ```c++
 int dir() {
-$windows( return system("dir") );
-$welse( return system("ls -la") );
-return 0;
+  $windows( return system("dir") );
+  $welse( return system("ls -la") );
+  return 0;
 }
 ```
 
@@ -60,13 +60,15 @@ int main() {
 int main() {
   $throw(
     try {
-      game(); 
+      setup(); 
+      game();
     } catch(...) {
       /*...*/
     } 
   );
   $telse(
-    game(); 
+    setup();
+    game();
   );
 }
 ```
@@ -85,11 +87,12 @@ int main() {
 ```
 
 ### Warning macros
-`$warning(...)`
-`$todo(...)`
+- `$warning(...)`
+- `$todo(...)`
 
 ```c++
 $warning("line printed in compile time");
+$todo("cook food");
 int main()
 {}
 ```
@@ -101,15 +104,15 @@ int main()
 
 ```c++
 #if $on($windows))
-#include <windows.h>
+#  include <windows.h>
 #else
-#include <unistd.h>
+#  include <unistd.h>
 #endif
 
 int main()
-if( $on($linux) && $on($release) ) {
-print("linux-release");
-}
+  if( $on($linux) && $on($release) ) {
+    print("linux-release");
+  }
 }
 ```
 
@@ -127,9 +130,12 @@ string
 - `$comment(...)`, `$uncomment(...)`
 
 ```c++
-$comment(
-print("this code is never compiled");
-);
+int main() {
+ $comment(
+  print("this code...");
+  print("...is never compiled");
+ );
+}
 ```
 
 ### C++11/03 macros
@@ -137,6 +143,5 @@ print("this code is never compiled");
 - `$cpp03(...)`
 
 ```c++
-$cpp03( const void* get_null() { return 0; } );
-$cpp11( std::nullptr_t get_null() { return nullptr; } );
+$cpp03( const void* ) $cpp11( auto ) nil = $cpp03( 0 ) $cpp11( nullptr );
 ```
