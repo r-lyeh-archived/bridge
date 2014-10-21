@@ -7,12 +7,12 @@ bridge
 - Bridge pollutes a few macros on purpose. Sorry but I think this is convenient.
 - Bridge is BOOST licensed.
 
-### std:: library
+## std:: library wrapper
 
-- if C++11, bridge includes a few c++11 headers.
-- if C++03, bridge fallbacks to boost libraries. 
-- additionally include 128-bit headers if possible.
-- after #including bridge, a safe `std::` playground is avalailable.
+- on C++11 platforms, bridge includes a few c++11 headers only.
+- on C++03 platforms, bridge fallbacks to a few boost libraries. 
+- additionally 128-bit headers are included if possible.
+
 - playground wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
 
 ```
@@ -28,6 +28,10 @@ bridge
   return std::bind( fn, _1 );
 }
 ```
+
+## Bridge macros
+- Bridge macros can contain multiline text and/or code
+- These macros can be located inside functions, global namespaces, and #if directives.
 
 ### Thread local storage  
 - `$tls(x)`
@@ -56,7 +60,7 @@ int dir() {
 - `$clang(...)`, `$celse(...)`
 - `$undefined_compiler(...)`
 
-```
+```c++
 int main() {
   $msvc( __asm int 3 );
 }
@@ -65,7 +69,7 @@ int main() {
 ### Exception macros
 - `$throw(...)`, `$telse(...)`
 
-```
+```c++
 int main() {
   $throw(
     try {
@@ -148,9 +152,11 @@ int main() {
 ```
 
 ### C++11/03 macros
-- `$cpp11(...)`
 - `$cpp03(...)`
+- `$cpp11(...)`
 
 ```c++
-$cpp03( const void* ) $cpp11( auto ) nil = $cpp03( 0 ) $cpp11( nullptr );
+$cpp03( const void* nil = 0 );
+$cpp11( auto nil = nullptr );
+// or $cpp03( const void* ) $cpp11( auto ) nil = $cpp03( 0 ) $cpp11( nullptr );
 ```
