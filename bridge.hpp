@@ -1,5 +1,5 @@
 // std 11 <-> 03/w-boost bridge compatiblity layer, plus a few macro utils.
-// - rlyeh, boost licensed.
+// - rlyeh, zlib/libpng licensed.
 
 #ifndef __BRIDGE_HPP__
 #define __BRIDGE_HPP__
@@ -12,7 +12,7 @@
 #if (__cplusplus < 201103L && !defined(_MSC_VER)) || (defined(_MSC_VER) && (_MSC_VER < 1700)) || (defined(__GLIBCXX__) && __GLIBCXX__ < 20130322L)
 #   define BRIDGE_VERSION 2003
 #   include <boost/functional.hpp> // if old libstdc++ or msc libs are found, use boost::function
-#   include <boost/function.hpp>   // 
+#   include <boost/function.hpp>   //
 #   include <boost/thread.hpp>     // and boost::thread
 #   include <boost/cstdint.hpp>
 #   include <boost/type_traits.hpp>
@@ -40,7 +40,7 @@ namespace std {
 #define $cpp03          $yes
 #endif
 
-// Thread Local Storage 
+// Thread Local Storage
 
 #if defined(__MINGW32__) || defined(__SUNPRO_C) || defined(__xlc__) || defined(__GNUC__) || defined(__clang__) || defined(__GNUC__) // __INTEL_COMPILER on linux
 //   MingW, Solaris Studio C/C++, IBM XL C/C++,[3] GNU C,[4] Clang[5] and Intel C++ Compiler (Linux systems)

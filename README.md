@@ -4,24 +4,24 @@ bridge
 - Bridge provides a C++11 subset playground even if no C++11 is present.
 - Bridge provides a few macro utils, aimed to cross-development.
 - Bridge pollutes macros on purpose. Sorry but I think this is convenient.
-- Bridge is cross-platform. 
+- Bridge is cross-platform.
 - Bridge is header-only.
-- Bridge is BOOST licensed.
+- Bridge is zlib/libpng licensed.
 
 ## std:: library wrapper
 
 - on C++11 platforms, bridge includes a few c++11 headers only.
-- on C++03 platforms, bridge fallbacks to a few boost libraries. 
+- on C++03 platforms, bridge fallbacks to a few boost libraries.
 - additionally 128-bit headers are included if possible.
 - bridge recreates a safe std:: playground that wraps all `std::mutex` variants, `std::thread`, `std::function`, `std::bind`, `std::placeholders` and `std::(u)int\*_t` types (for now).
 
 ```c++
 {
   std::thread( classA() ).detach();
-  
+
   std::mutex m;
   std::scope_lock guard(m);
-  
+
   std::function<int(int,const char**)> fn( main );
 
   using namespace std::placeholders;
@@ -33,7 +33,7 @@ bridge
 - Bridge macros can contain multiline text and/or code
 - These macros can be located inside functions, global namespaces, and #if directives.
 
-### Thread local storage  
+### Thread local storage
 - `$tls(x)`
 
 ```c++
@@ -73,11 +73,11 @@ int main() {
 int main() {
   $throw(
     try {
-      setup(); 
+      setup();
       game();
     } catch(...) {
       /*...*/
-    } 
+    }
   );
   $telse(
     setup();
@@ -94,7 +94,7 @@ int main() {
   // disable logging
   $release({
     fclose(stderr);
-    fclose(stdout) 
+    fclose(stdout)
   });
 }
 ```
