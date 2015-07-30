@@ -158,3 +158,11 @@ int main() {
 ```c++
 $cpp11(std::unique_ptr) $cpp03(std::auto_ptr) <std::string> str( new std::string("hi") );
 ```
+
+### 32/64bits
+- `$bits32(...)`
+- `$bits64(...)`
+
+### likely/unlikely
+- `$likely(expr)`
+- `$unlikely(expr)`

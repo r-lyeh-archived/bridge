@@ -89,12 +89,28 @@ namespace std {
 
 // Compiler utils
 
-#if defined(NDEBUG) || defined(_NDEBUG)
+#if ULONG_MAX == 4294967295
+#   define $bits64    $yes
+#   define $bits32    $no
+#else
+#   define $bits64    $no
+#   define $bits32    $yes
+#endif
+
+#if defined(NDEBUG) || defined(_NDEBUG) || defined(RELEASE)
 #   define $release   $yes
 #   define $debug     $no
 #else
 #   define $release   $no
 #   define $debug     $yes
+#endif
+
+#if defined(NDEVEL) || defined(_NDEVEL) || defined(PUBLIC)
+#   define $public    $yes
+#   define $devel     $no
+#else
+#   define $public    $no
+#   define $devel     $yes
 #endif
 
 #if defined(__GNUC__) || defined(__MINGW32__)
@@ -131,6 +147,14 @@ namespace std {
 #   define $undefined_os $no
 #else
 #   define $undefined_os $yes
+#endif
+
+#if $on($gnuc) || $on($clang)
+#   define $likely(expr)    (__builtin_expect(!!(expr), 1))
+#   define $unlikely(expr)  (__builtin_expect(!!(expr), 0))
+#else
+#   define $likely(expr)    ((expr))
+#   define $unlikely(expr)  ((expr))
 #endif
 
 // try to detect if exceptions are enabled...
