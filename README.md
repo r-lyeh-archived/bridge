@@ -44,6 +44,8 @@ static $tls(bool) acquired = false;
 - `$windows(...)`, `$welse(...)`
 - `$linux(...)`, `$lelse(...)`
 - `$apple(...)`, `$aelse(...)`
+- `$ios(...)`, `$ielse(...)`
+- `$osx(...)`, `$oelse(...)`
 - `$undefined_os(...)`
 
 ```c++
@@ -166,3 +168,6 @@ $cpp11(std::unique_ptr) $cpp03(std::auto_ptr) <std::string> str( new std::string
 ### likely/unlikely
 - `$likely(expr)`
 - `$unlikely(expr)`
+
+### Changelog
+- v1.0.0 (2016/04/11): Initial semantic versioning adherence; add $osx and $ios

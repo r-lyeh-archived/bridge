@@ -4,13 +4,15 @@
 #ifndef __BRIDGE_HPP__
 #define __BRIDGE_HPP__
 
+#define BRIDGE_VERSION "1.0.0" // (2016/04/11) Initial semantic versioning adherence; add $osx and $ios
+
 #ifdef __SSE__
 #   define BOOST_HAS_INT128 1
 #   include <xmmintrin.h>
 #endif
 
 #if (__cplusplus < 201103L && !defined(_MSC_VER)) || (defined(_MSC_VER) && (_MSC_VER < 1700)) || (defined(__GLIBCXX__) && __GLIBCXX__ < 20130322L)
-#   define BRIDGE_VERSION 2003
+#   define BRIDGE_CPP_VERSION 2003
 #   include <boost/functional.hpp> // if old libstdc++ or msc libs are found, use boost::function
 #   include <boost/function.hpp>   //
 #   include <boost/thread.hpp>     // and boost::thread
@@ -25,14 +27,14 @@ namespace std {
     using namespace boost;
 }
 #else
-#   define BRIDGE_VERSION 2011
+#   define BRIDGE_CPP_VERSION 2011
 #   include <functional>       // else assume modern c++11 and use std::function<> instead
 #   include <mutex>            // and std::mutex
 #   include <thread>           // and std::thread
 #   include <cstdint>
 #endif
 
-#if BRIDGE_VERSION >= 2011
+#if BRIDGE_CPP_VERSION >= 2011
 #define $cpp11          $yes
 #define $cpp03          $no
 #else
@@ -85,6 +87,22 @@ namespace std {
 #else
 #   define $linux     $no
 #   define $lelse     $yes
+#endif
+
+#if defined(__APPLE__) && defined(TARGET_OS_MAC)
+#   define $osx   $yes
+#   define $oelse $no
+#else
+#   define $osx   $no
+#   define $oelse $yes
+#endif
+
+#if defined(__APPLE__) && (defined(TARGET_OS_IPHONE) || defined(TARGET_IPHONE_SIMULATOR))
+#   define $ios   $yes
+#   define $ielse $no
+#else
+#   define $ios   $no
+#   define $ielse $yes
 #endif
 
 // Compiler utils
